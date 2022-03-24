@@ -4,7 +4,7 @@ ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: Colors.black,
   backgroundColor: Colors.black,
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Colors.black,
     unselectedItemColor: Colors.white,
     selectedItemColor: Colors.redAccent,
@@ -12,7 +12,7 @@ ThemeData darkTheme = ThemeData(
   ),
   highlightColor: Colors.transparent,
   splashColor: Colors.transparent,
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     color: Colors.black,
     elevation: 0,
     textTheme: TextTheme(

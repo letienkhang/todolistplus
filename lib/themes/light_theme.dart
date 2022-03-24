@@ -4,15 +4,15 @@ ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: Colors.white,
   backgroundColor: Colors.white,
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Colors.white,
-    unselectedItemColor: Colors.black,
-    selectedItemColor: Colors.redAccent,
+    unselectedItemColor: Colors.grey,
+    selectedItemColor: Colors.black,
     elevation: 0,
   ),
   highlightColor: Colors.transparent,
   splashColor: Colors.transparent,
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     color: Colors.white,
     elevation: 0,
     textTheme: TextTheme(
