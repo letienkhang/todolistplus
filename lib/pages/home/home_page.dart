@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolistplus/data/model/todo_model.dart';
 import 'package:todolistplus/pages/home/home_controller.dart';
+import 'package:todolistplus/routes/app_routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -49,7 +50,8 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(24),
                   child: FloatingActionButton(
                     onPressed: () {
-                      controller.addTodo();
+                      Get.toNamed(AppRoutes.CREATENOTE);
+                     // controller.addTodo();
                     },
                     child: const Icon(Icons.add),
                   ),

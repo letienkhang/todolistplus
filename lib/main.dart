@@ -17,8 +17,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialRoute: AppRoutes.DASHBOARD,
       getPages: AppPages.list,
+      locale: const Locale("en", "US"),
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      fallbackLocale: const Locale('en', 'US'),
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
     );

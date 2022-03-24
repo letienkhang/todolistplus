@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:todolistplus/pages/add_new_note/add_new_note_binding.dart';
+import 'package:todolistplus/pages/add_new_note/add_new_note_page.dart';
 import 'package:todolistplus/pages/dashboard/dashboard_binding.dart';
 import 'package:todolistplus/pages/dashboard/dashboard_page.dart';
 
@@ -10,6 +12,11 @@ class AppPages {
       name: AppRoutes.DASHBOARD,
       page: () => DashboardPage(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.CREATENOTE,
+      page: () => AddNewNotePage(),
+      binding: AddNewNoteBinding(),
     ),
   ];
 }

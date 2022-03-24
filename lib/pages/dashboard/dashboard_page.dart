@@ -28,7 +28,7 @@ class DashboardPage extends StatelessWidget {
               label: 'Home',
             ),
             _bottomNavigationBarItem(
-              icon: CupertinoIcons.book,
+              icon: CupertinoIcons.settings,
               label: 'News',
             ),
           ],
