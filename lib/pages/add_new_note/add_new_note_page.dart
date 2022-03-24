@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todolistplus/pages/add_new_note/add_new_note_controller.dart';
+import 'package:todolistplus/pages/add_new_note/widgets/description_task_widget.dart';
 
 import 'widgets/name_task_widget.dart';
 
@@ -25,10 +26,14 @@ class AddNewNotePage extends StatelessWidget {
             child: ListView(
               children: [
                 _createNewTaskString(context),
-                SizedBox(height: 20.h),
-                // NameTaskWidget(
-                //   titleTaskController: controller.titleController.value,
-                // ),
+                const SizedBox(  height: 30,),
+                NameTaskWidget(
+                  titleTaskController: controller.titleController.value,
+                ),
+                const SizedBox(  height: 20,),
+                DescriptionTaskWidget(
+                  taskController: controller.descriptionController.value,
+                ),
               ],
             ),
           ),

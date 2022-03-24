@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
-class NameTaskWidget extends StatelessWidget {
-  NameTaskWidget({Key? key, required this.titleTaskController})
-      : super(key: key);
-
-  var titleTaskController = TextEditingController();
+class DescriptionTaskWidget extends StatelessWidget {
+   DescriptionTaskWidget({Key? key, required this.taskController}) : super(key: key);
+  var taskController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return SizedBox(
-      height: 60,
+      height: 120,
       child: TextFormField(
-        controller: titleTaskController,
+        controller: taskController,
+        keyboardType: TextInputType.multiline,
+        minLines: 4,
+        maxLines: 6,
         decoration: InputDecoration(
-          labelText: "Title",
+          labelText: "Description",
           labelStyle: theme.textTheme.headline6,
           fillColor: Colors.black,
           focusedBorder: OutlineInputBorder(
