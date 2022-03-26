@@ -26,15 +26,30 @@ class AddNewNotePage extends StatelessWidget {
             child: ListView(
               children: [
                 _createNewTaskString(context),
-                const SizedBox(  height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
                 NameTaskWidget(
                   titleTaskController: controller.titleController.value,
                 ),
-                const SizedBox(  height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 DescriptionTaskWidget(
                   taskController: controller.descriptionController.value,
                 ),
               ],
+            ),
+          ),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              padding: const EdgeInsets.only(
+                  top: 20, bottom: 20, left: 12, right: 12),
+              color: Colors.green,
+              child: const Text("Ableitungen"),
             ),
           ),
         ),
