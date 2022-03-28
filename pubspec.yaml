@@ -41,6 +41,8 @@ dependencies:
   get: ^4.6.1
   device_preview: ^1.0.0
   syncfusion_flutter_datepicker: ^19.4.56
+  date_picker_timeline: ^1.2.3
+  flutter_date_picker_timeline: ^0.3.3
 
 dev_dependencies:
   flutter_test:

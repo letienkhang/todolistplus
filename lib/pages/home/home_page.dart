@@ -1,9 +1,11 @@
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolistplus/data/model/todo_model.dart';
 import 'package:todolistplus/pages/home/home_controller.dart';
 import 'package:todolistplus/routes/app_routes.dart';
+import 'package:flutter_date_picker_timeline/flutter_date_picker_timeline.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,12 +13,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
+      final theme = Theme.of(context);
       return Scaffold(
         body: SafeArea(
           child: Stack(
             children: [
+              Container(
+                  padding: const EdgeInsets.only(top: 11, bottom: 11),
+                  decoration: const BoxDecoration(color: Color(0xFFF5F5F5)),
+                  child: FlutterDatePickerTimeline(
+                    startDate: DateTime(DateTime.now().year, 01, 31),
+                    endDate: DateTime(DateTime.now().year, 12, 30),
+                    initialSelectedDate: DateTime.now(),
+                    onSelectedDateChange: (DateTime? date) {},
+                  )),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(top: 60),
                 child: FutureBuilder<List<Todo>>(
                     future: controller.getAllNote(),
                     builder: (_, snapshot) {
@@ -30,7 +42,7 @@ class HomePage extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(24),
                                     child: InkWell(
-                                      onTap: (){
+                                      onTap: () {
                                         if (kDebugMode) {
                                           print("${e.description}");
                                         }
@@ -72,6 +84,4 @@ class HomePage extends StatelessWidget {
       );
     });
   }
-
-
 }
