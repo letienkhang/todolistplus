@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolistplus/data/model/todo_model.dart';
@@ -25,12 +26,19 @@ class HomePage extends StatelessWidget {
                           children: todoList
                               .map(
                                 (e) => Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(24),
-                                child: Text(e.title),
-                              ),
-                            ),
-                          )
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(24),
+                                    child: InkWell(
+                                      onTap: (){
+                                        if (kDebugMode) {
+                                          print("${e.description}");
+                                        }
+                                      },
+                                      child: Text(e.title),
+                                    ),
+                                  ),
+                                ),
+                              )
                               .toList(),
                         );
                       } else if (snapshot.hasError) {
@@ -51,7 +59,7 @@ class HomePage extends StatelessWidget {
                   child: FloatingActionButton(
                     onPressed: () {
                       Get.toNamed(AppRoutes.CREATENOTE);
-                     // controller.addTodo();
+                      // controller.addTodo();
                     },
                     child: const Icon(Icons.add),
                   ),

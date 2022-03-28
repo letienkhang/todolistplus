@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todolistplus/pages/add_new_note/add_new_note_controller.dart';
 import 'package:todolistplus/pages/add_new_note/widgets/description_task_widget.dart';
+import 'package:todolistplus/pages/home/home_controller.dart';
 
 import 'widgets/name_task_widget.dart';
 
@@ -12,7 +11,7 @@ class AddNewNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return GetBuilder<AddNewNoteController>(builder: (controller) {
+    return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -44,7 +43,9 @@ class AddNewNotePage extends StatelessWidget {
         ),
         bottomNavigationBar: BottomAppBar(
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              controller.addTodo();
+            },
             child: Container(
               padding: const EdgeInsets.only(
                   top: 20, bottom: 20, left: 12, right: 12),

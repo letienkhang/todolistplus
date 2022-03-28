@@ -1,3 +1,4 @@
+
 import 'package:todolistplus/utils/exports.dart';
 
 class ConstanceData {
@@ -41,3 +42,4 @@ Color kDeletedColor = Colors.red;
 Color kBackGroundColor2 = Color(0xff3E3B64);
 
 Duration kDuration = Duration(milliseconds: 300);
+

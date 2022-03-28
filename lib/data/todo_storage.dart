@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'model/todo_model.dart';
-
 
 final TodoStorage todoStorage = FileSystemTodoStorage();
 
 abstract class TodoStorage {
   Future<List<Todo>> readTodoList();
+
   Future<void> insertTodo(Todo todo);
 }
 
@@ -24,7 +24,7 @@ class FileSystemTodoStorage extends TodoStorage {
       return jsonArray
           .map(
             (jsonObject) => Todo.fromJson(jsonObject),
-      )
+          )
           .toList();
     } catch (e) {
       return [];
@@ -45,6 +45,9 @@ class FileSystemTodoStorage extends TodoStorage {
       final file = await _localFile;
       final jsonArray = latestTodoList.map((todo) => todo.toJson()).toList();
       await file.writeAsString(jsonEncode(jsonArray));
+      if (kDebugMode) {
+        print("Add new ${todo.title}");
+      }
     } catch (e) {
       return;
     }

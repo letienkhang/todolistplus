@@ -1,11 +1,14 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolistplus/data/model/todo_model.dart';
 import 'package:todolistplus/data/todo_storage.dart';
 
 class HomeController extends GetxController {
-   bool isLoading = true;
+  bool isLoading = true;
+  var titleController = TextEditingController().obs;
+  var descriptionController = TextEditingController().obs;
 
   @override
   void onInit() {
@@ -13,10 +16,10 @@ class HomeController extends GetxController {
   }
 
   Future<void> addTodo() async {
-    final randomTitle = _getRandomTitle();
-    final todo = Todo(title: randomTitle);
+    final todo = Todo(
+        title: titleController.value.text,
+        description: descriptionController.value.text);
     await todoStorage.insertTodo(todo);
-    getAllNote();
     update();
   }
 
