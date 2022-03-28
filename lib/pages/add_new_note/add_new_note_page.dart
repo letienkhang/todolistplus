@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:todolistplus/pages/add_new_note/widgets/description_task_widget.dart';
 import 'package:todolistplus/pages/home/home_controller.dart';
 
+import 'widgets/date_time_widget.dart';
 import 'widgets/name_task_widget.dart';
 
 class AddNewNotePage extends StatelessWidget {
@@ -37,6 +38,10 @@ class AddNewNotePage extends StatelessWidget {
                 DescriptionTaskWidget(
                   taskController: controller.descriptionController.value,
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const DateTimeWidget(),
               ],
             ),
           ),

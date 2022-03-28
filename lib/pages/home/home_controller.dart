@@ -9,6 +9,8 @@ class HomeController extends GetxController {
   bool isLoading = true;
   var titleController = TextEditingController().obs;
   var descriptionController = TextEditingController().obs;
+  var dateTimeNow = DateTime.now();
+  var eventDateTime = DateTime.now().obs;
 
   @override
   void onInit() {

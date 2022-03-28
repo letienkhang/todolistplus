@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
                       if (snapshot.hasData) {
                         final todoList = snapshot.data!;
                         return ListView(
+                          physics: const BouncingScrollPhysics(),
                           children: todoList
                               .map(
                                 (e) => Card(
@@ -71,4 +72,6 @@ class HomePage extends StatelessWidget {
       );
     });
   }
+
+
 }
