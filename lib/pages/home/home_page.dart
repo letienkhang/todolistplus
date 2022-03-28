@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +28,8 @@ class HomePage extends StatelessWidget {
                   initialSelectedDate: DateTime.now(),
                   onSelectedDateChange: (DateTime? date) {
                     if (_clickCount != 0) {
-                      controller.getNoteByDay(convertToString(date!));
+                      controller.eventAddValueSelect(date);
+                      // controller.getNoteByDay(convertToString(date!));
                     } else {}
                     _clickCount++;
 
@@ -47,7 +45,7 @@ class HomePage extends StatelessWidget {
                 child: FutureBuilder<List<Todo>>(
                     future: controller.myTodo,
                     builder: (_, snapshot) {
-                      if (snapshot.hasData) {
+                      if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                         final todoList = snapshot.data!;
                         return ListView(
                           physics: const BouncingScrollPhysics(),
@@ -75,7 +73,7 @@ class HomePage extends StatelessWidget {
                         );
                       } else {
                         return const Center(
-                          child: CircularProgressIndicator(),
+                          child: Text("Nothing"),
                         );
                       }
                     }),

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -16,10 +17,21 @@ class HomeController extends GetxController {
   var eventTimeStart = TimeOfDay.now().obs;
   var eventTimeEnd = TimeOfDay.now().obs;
   late Future<List<Todo>> myTodo;
+  var selectDay = DateTime.now().obs;
 
   @override
   Future<void> onInit() async {
-    myTodo = getNoteByDay(convertToString(dateTimeNow))!;
+    selectDay.value = dateTimeNow;
+    myTodo = getNoteByDay()!;
+  }
+
+  eventAddValueSelect(DateTime? date) {
+    selectDay.value = date!;
+    getNoteByDay();
+    if (kDebugMode) {
+      print("value selectDay");
+    }
+    update();
   }
 
   Future<void> addTodo() async {
@@ -29,6 +41,10 @@ class HomeController extends GetxController {
         description: descriptionController.value.text,
         day: date);
     await todoStorage.insertTodo(todo);
+    getNoteByDay();
+    if (kDebugMode) {
+      print("getNoteByDay add Todo");
+    }
     update();
   }
 
@@ -49,11 +65,16 @@ class HomeController extends GetxController {
   }
 
   Future<List<Todo>>? getAllNote() async {
-    return todoStorage.readTodoList();
+    myTodo = todoStorage.readTodoList();
+    return myTodo;
   }
 
-  Future<List<Todo>>? getNoteByDay(String data) async {
-    myTodo = todoStorage.readTodoListFilterDay(data);
+  Future<List<Todo>>? getNoteByDay() async {
+    myTodo =
+        todoStorage.readTodoListFilterDay(convertToString(selectDay.value));
+    if (kDebugMode) {
+      print("getNoteByDay");
+    }
     update();
     return myTodo;
   }
