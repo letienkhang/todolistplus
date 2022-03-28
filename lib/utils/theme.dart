@@ -104,6 +104,12 @@ class CustomTheme {
       fontWeight: FontWeight.w400,
       color: Colors.grey,
     ),
+    headline6: TextStyle(
+      fontSize: 14.sp,
+      fontFamily: ConstanceData.abelFont,
+      fontWeight: FontWeight.w400,
+      color: Colors.grey,
+    ),
     subtitle2: TextStyle(
       color: Colors.white,
       fontSize: 11.sp,

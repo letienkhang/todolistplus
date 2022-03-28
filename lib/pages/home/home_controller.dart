@@ -11,6 +11,8 @@ class HomeController extends GetxController {
   var descriptionController = TextEditingController().obs;
   var dateTimeNow = DateTime.now();
   var eventDateTime = DateTime.now().obs;
+  var eventTimeStart = TimeOfDay.now().obs;
+  var eventTimeEnd = TimeOfDay.now().obs;
 
   @override
   void onInit() {
@@ -34,6 +36,13 @@ class HomeController extends GetxController {
       ),
     );
   }
+
+  TimeOfDay? setTime({TimeOfDay? time, TimeOfDay? result}) {
+    time = result;
+    update();
+    return time;
+  }
+
 
   Future<List<Todo>>? getAllNote() async {
     return todoStorage.readTodoList();

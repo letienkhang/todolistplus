@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todolistplus/pages/add_new_note/widgets/custom_chip_time_widget.dart';
 import 'package:todolistplus/pages/add_new_note/widgets/description_task_widget.dart';
 import 'package:todolistplus/pages/home/home_controller.dart';
 
@@ -42,6 +43,45 @@ class AddNewNotePage extends StatelessWidget {
                   height: 20,
                 ),
                 const DateTimeWidget(),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  children: [
+                    CustomChipTimeWidget(
+                      title: "Start Time",
+                      textStyle: theme.textTheme.bodyText1,
+                      date: controller.eventTimeStart.value,
+                      onPressed: () async {
+                        final time = TimeOfDay.now();
+                        controller.eventTimeStart.value = (await showTimePicker(
+                          context: context,
+                          initialTime: time,
+                        ))!;
+                        controller.update();
+                      },
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    CustomChipTimeWidget(
+                      title: "End Time",
+                      textStyle: theme.textTheme.bodyText1,
+                      date: controller.eventTimeEnd.value,
+                      onPressed: () async {
+                        final time = TimeOfDay.now();
+                        controller.eventTimeEnd.value = (await showTimePicker(
+                          context: context,
+                          initialTime: time,
+                        ))!;
+                        controller.update();
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           ),
