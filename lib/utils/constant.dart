@@ -1,4 +1,4 @@
-
+import 'package:intl/intl.dart';
 import 'package:todolistplus/utils/exports.dart';
 
 class ConstanceData {
@@ -43,3 +43,5 @@ Color kBackGroundColor2 = Color(0xff3E3B64);
 
 Duration kDuration = Duration(milliseconds: 300);
 
+String convertToString(DateTime time) =>
+    DateFormat("yyyy-MM-dd").format(time);

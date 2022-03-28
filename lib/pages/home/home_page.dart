@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,31 +8,44 @@ import 'package:todolistplus/data/model/todo_model.dart';
 import 'package:todolistplus/pages/home/home_controller.dart';
 import 'package:todolistplus/routes/app_routes.dart';
 import 'package:flutter_date_picker_timeline/flutter_date_picker_timeline.dart';
+import 'package:todolistplus/utils/exports.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(builder: (controller) {
-      final theme = Theme.of(context);
-      return Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: [
-              Container(
-                  padding: const EdgeInsets.only(top: 11, bottom: 11),
-                  decoration: const BoxDecoration(color: Color(0xFFF5F5F5)),
-                  child: FlutterDatePickerTimeline(
-                    startDate: DateTime(DateTime.now().year, 01, 31),
-                    endDate: DateTime(DateTime.now().year, 12, 30),
-                    initialSelectedDate: DateTime.now(),
-                    onSelectedDateChange: (DateTime? date) {},
-                  )),
-              Padding(
+    final theme = Theme.of(context);
+    final HomeController controller = Get.put(HomeController());
+    int _clickCount = 0;
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+                padding: const EdgeInsets.only(top: 11, bottom: 11),
+                decoration: const BoxDecoration(color: Color(0xFFF5F5F5)),
+                child: FlutterDatePickerTimeline(
+                  startDate: DateTime(DateTime.now().year, 01, 31),
+                  endDate: DateTime(DateTime.now().year, 12, 30),
+                  initialSelectedDate: DateTime.now(),
+                  onSelectedDateChange: (DateTime? date) {
+                    if (_clickCount != 0) {
+                      controller.getNoteByDay(convertToString(date!));
+                    } else {}
+                    _clickCount++;
+
+                    if (kDebugMode) {
+                      print("$date");
+                    }
+                  },
+                )),
+            GetBuilder<HomeController>(
+              init: controller, // INIT IT ONLY THE FIRST TIME
+              builder: (controller) => Padding(
                 padding: const EdgeInsets.only(top: 60),
                 child: FutureBuilder<List<Todo>>(
-                    future: controller.getAllNote(),
+                    future: controller.myTodo,
                     builder: (_, snapshot) {
                       if (snapshot.hasData) {
                         final todoList = snapshot.data!;
@@ -65,23 +80,23 @@ class HomePage extends StatelessWidget {
                       }
                     }),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      Get.toNamed(AppRoutes.CREATENOTE);
-                      // controller.addTodo();
-                    },
-                    child: const Icon(Icons.add),
-                  ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.CREATENOTE);
+                    // controller.addTodo();
+                  },
+                  child: const Icon(Icons.add),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }

@@ -11,6 +11,8 @@ final TodoStorage todoStorage = FileSystemTodoStorage();
 abstract class TodoStorage {
   Future<List<Todo>> readTodoList();
 
+  Future<List<Todo>> readTodoListFilterDay(String dataFilter);
+
   Future<void> insertTodo(Todo todo);
 }
 
@@ -50,6 +52,24 @@ class FileSystemTodoStorage extends TodoStorage {
       }
     } catch (e) {
       return;
+    }
+  }
+
+  @override
+  Future<List<Todo>> readTodoListFilterDay(String dataFilter) async {
+    try {
+      final file = await _localFile;
+      final content = await file.readAsString();
+      final List<dynamic> jsonArray = jsonDecode(content);
+      return jsonArray
+          .map(
+            (jsonObject) => Todo.fromJson(jsonObject),
+          )
+          .toList()
+          .where((element) => element.day == dataFilter)
+          .toList();
+    } catch (e) {
+      return [];
     }
   }
 }

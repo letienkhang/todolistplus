@@ -1,8 +1,9 @@
 class Todo {
   String title;
   String? description;
+  String? day;
 
-  Todo({required this.title, this.description});
+  Todo({required this.title, this.description, this.day});
 
   @override
   String toString() => 'Todo(title: $title)';
@@ -10,11 +11,13 @@ class Todo {
   factory Todo.fromJson(Map<String, dynamic> json) => Todo(
     title: json['title'] as String,
     description: json['description'] as String,
+    day: json['day'] as String,
   );
 
   Map<String, dynamic> toJson() => {
     'title': title,
     'description': description,
+    'day': day,
   };
 
   Todo copyWith({
@@ -23,7 +26,8 @@ class Todo {
   }) {
     return Todo(
       title: title,
-      description: description
+      description: description,
+      day: day
     );
   }
 
