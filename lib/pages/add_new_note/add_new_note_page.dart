@@ -16,8 +16,10 @@ class AddNewNotePage extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: theme.backgroundColor,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            icon:  Icon(Icons.arrow_back, color: theme.primaryColor),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
@@ -46,45 +48,45 @@ class AddNewNotePage extends StatelessWidget {
                   ),
                   const DateTimeWidget(),
                   const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: [
-                      CustomChipTimeWidget(
-                        title: "Start Time",
-                        textStyle: theme.textTheme.bodyText1,
-                        date: controller.eventTimeStart.value,
-                        onPressed: () async {
-                          final time = TimeOfDay.now();
-                          controller.eventTimeStart.value =
-                              (await showTimePicker(
-                            context: context,
-                            initialTime: time,
-                          ))!;
-                          controller.update();
-                        },
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      CustomChipTimeWidget(
-                        title: "End Time",
-                        textStyle: theme.textTheme.bodyText1,
-                        date: controller.eventTimeEnd.value,
-                        onPressed: () async {
-                          final time = TimeOfDay.now();
-                          controller.eventTimeEnd.value = (await showTimePicker(
-                            context: context,
-                            initialTime: time,
-                          ))!;
-                          controller.update();
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
                     height: 40,
                   ),
+                  // Row(
+                  //   children: [
+                  //     CustomChipTimeWidget(
+                  //       title: "Start Time",
+                  //       textStyle: theme.textTheme.bodyText1,
+                  //       date: controller.eventTimeStart.value,
+                  //       onPressed: () async {
+                  //         final time = TimeOfDay.now();
+                  //         controller.eventTimeStart.value =
+                  //             (await showTimePicker(
+                  //           context: context,
+                  //           initialTime: time,
+                  //         ))!;
+                  //         controller.update();
+                  //       },
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 10,
+                  //     ),
+                  //     CustomChipTimeWidget(
+                  //       title: "End Time",
+                  //       textStyle: theme.textTheme.bodyText1,
+                  //       date: controller.eventTimeEnd.value,
+                  //       onPressed: () async {
+                  //         final time = TimeOfDay.now();
+                  //         controller.eventTimeEnd.value = (await showTimePicker(
+                  //           context: context,
+                  //           initialTime: time,
+                  //         ))!;
+                  //         controller.update();
+                  //       },
+                  //     ),
+                  //   ],
+                  // ),
+                  // const SizedBox(
+                  //   height: 40,
+                  // ),
                 ],
               ),
             ),
@@ -93,32 +95,24 @@ class AddNewNotePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: FloatingActionButton(
-                  backgroundColor: Colors.black,
+                  backgroundColor: theme.primaryColor,
                   onPressed: () {
-                    controller.addTodo();
-                    Get.snackbar(
-                        "Success", "");
-                    Navigator.of(context).pop();
+                    if(controller.titleController.value.text.isNotEmpty){
+                      controller.addTodo();
+                      Get.snackbar(
+                          "Success", "");
+                      Navigator.of(context).pop();
+                    } else {
+                      Get.snackbar(
+                          "Title is empty", "");
+                    }
                   },
-                  child: const Icon(Icons.add),
+                  child:  Icon(Icons.add, color: theme.primaryColorLight,),
                 ),
               ),
             ),
           ],
         )),
-        // bottomNavigationBar: BottomAppBar(
-        //   child: InkWell(
-        //     onTap: () {
-        //       controller.addTodo();
-        //     },
-        //     child: Container(
-        //       padding: const EdgeInsets.only(
-        //           top: 20, bottom: 20, left: 12, right: 12),
-        //       color: Colors.green,
-        //       child: const Text("Ableitungen"),
-        //     ),
-        //   ),
-        // ),
       );
     });
   }

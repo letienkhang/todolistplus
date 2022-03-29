@@ -13,12 +13,16 @@ class NameTaskWidget extends StatelessWidget {
       height: 60,
       child: TextFormField(
         controller: titleTaskController,
+        cursorColor: theme.primaryColor,
         decoration: InputDecoration(
           labelText: "Title",
-          labelStyle: theme.textTheme.headline6,
-          fillColor: Colors.black,
+          labelStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: theme.primaryColor),
+          fillColor: theme.primaryColor,
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black, width: 2.0),
+            borderSide:  BorderSide(color: theme.primaryColor, width: 2.0),
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),

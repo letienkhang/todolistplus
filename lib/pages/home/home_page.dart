@@ -18,13 +18,15 @@ class HomePage extends StatelessWidget {
     final HomeController controller = Get.put(HomeController());
     int _clickCount = 0;
     return Scaffold(
-      backgroundColor: kTranperColor,
+      backgroundColor: theme.backgroundColor,
       body: SafeArea(
         child: Stack(
           children: [
             Container(
                 padding: const EdgeInsets.only(top: 11, bottom: 11),
-                decoration: const BoxDecoration(color: Color(0xFFF5F5F5)),
+                decoration: BoxDecoration(
+                  color: theme.backgroundColor,
+                ),
                 child: FlutterDatePickerTimeline(
                   startDate: DateTime(DateTime.now().year, 01, 31),
                   endDate: DateTime(DateTime.now().year, 12, 30),
@@ -44,7 +46,7 @@ class HomePage extends StatelessWidget {
             GetBuilder<HomeController>(
               init: controller, // INIT IT ONLY THE FIRST TIME
               builder: (controller) => Padding(
-                padding: const EdgeInsets.only(top: 60),
+                padding: const EdgeInsets.only(top: 70, left: 16, right: 16),
                 child: FutureBuilder<List<Todo>>(
                     future: controller.myTodo,
                     builder: (_, snapshot) {
@@ -80,12 +82,12 @@ class HomePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: FloatingActionButton(
-                  backgroundColor: Colors.black,
+                  backgroundColor: theme.primaryColor,
                   onPressed: () {
                     Get.toNamed(AppRoutes.CREATENOTE);
                     // controller.addTodo();
                   },
-                  child: const Icon(Icons.add),
+                  child:  Icon(Icons.add, color: theme.primaryColorLight,),
                 ),
               ),
             ),

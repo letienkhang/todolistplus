@@ -12,14 +12,18 @@ class DescriptionTaskWidget extends StatelessWidget {
       child: TextFormField(
         controller: taskController,
         keyboardType: TextInputType.multiline,
+        cursorColor: theme.primaryColor,
         minLines: 4,
         maxLines: 6,
         decoration: InputDecoration(
           labelText: "Description",
-          labelStyle: theme.textTheme.headline6,
-          fillColor: Colors.black,
+          labelStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: theme.primaryColor),
+          fillColor: theme.primaryColor,
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black, width: 2.0),
+            borderSide:  BorderSide(color:theme.primaryColor, width: 2.0),
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),

@@ -2,8 +2,8 @@ import 'package:todolistplus/utils/exports.dart';
 
 class CustomTheme {
 //
-  static const Color primaryColor1 = Color(0xff1C68F0);
-  static const Color primaryColor2 = Color(0xff2281F5);
+  static const Color primaryColor1 = Color(0xFF000000);
+  static const Color primaryColor2 =  Color(0xFFFFFFFF) ;
 
   static const Color deleteColor = Color(0xffE34946);
   static const Color updateColor = Color(0xffED9B1E);
@@ -119,18 +119,21 @@ class CustomTheme {
 
   static ThemeData buildDarkTheme() {
     return ThemeData(
-      indicatorColor: Colors.white,
+      brightness: Brightness.dark,
+      indicatorColor: Colors.grey,
       primaryColor: primaryColor2,
+      primaryColorLight: primaryColor1,
       buttonColor: primaryColor2,
-      accentColor: Colors.grey,
+      disabledColor: Colors.grey,
+      splashColor: Colors.transparent,
+      accentColor:primaryColor2,
       // colorScheme: _lightColorScheme,
-      scaffoldBackgroundColor: const Color(0xff2F2C53),
-      backgroundColor: const Color(0xff2F2C53),
+      scaffoldBackgroundColor: Colors.black,
+      backgroundColor: Colors.black,
       errorColor: deleteColor,
       platform: TargetPlatform.iOS,
       cursorColor: primaryColor2,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      brightness: Brightness.light,
       typography: Typography(),
       iconTheme: IconThemeData(color: Colors.white),
       primaryIconTheme: IconThemeData(color: Colors.white),
@@ -151,24 +154,27 @@ class CustomTheme {
 
   static ThemeData buildLightTheme() {
     return ThemeData(
-      primaryColor: primaryColor2,
+      primaryColor: primaryColor1,
+      primaryColorLight: primaryColor2,
+      indicatorColor: Colors.white,
       buttonColor: primaryColor2,
-      splashColor: Colors.white38,
+      splashColor: Colors.transparent,
       splashFactory: InkRipple.splashFactory,
-      accentColor: Colors.grey,
-      backgroundColor: const Color(0xFFFFFFFF),
-      scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+      disabledColor: Colors.grey,
+      accentColor:primaryColor1,
+      backgroundColor: const Color(0xFFF5F5F5),
+      scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       errorColor: deleteColor,
       cursorColor: primaryColor2,
       typography: Typography(),
       platform: TargetPlatform.iOS,
-      brightness: Brightness.dark,
+      // brightness: Brightness.dark,
       textTheme: _lightTextTheme,
-      iconTheme: IconThemeData(color: Colors.grey),
-      primaryIconTheme: IconThemeData(color: Colors.grey),
-      accentIconTheme: IconThemeData(color: Colors.grey),
+      iconTheme:IconThemeData(color: Colors.black),
+      primaryIconTheme: IconThemeData(color: Colors.black),
+      accentIconTheme: IconThemeData(color: Colors.black),
       timePickerTheme: TimePickerThemeData(
-        backgroundColor: const Color(0xFFFFFFFF),
+        backgroundColor: const Color(0xFFF5F5F5),
         dialHandColor: primaryColor2,
         dialTextColor: Colors.black,
         // entryModeIconColor: Colors.grey,

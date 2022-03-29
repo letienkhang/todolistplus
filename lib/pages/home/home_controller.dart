@@ -41,6 +41,9 @@ class HomeController extends GetxController {
         description: descriptionController.value.text,
         day: date);
     await todoStorage.insertTodo(todo);
+    titleController.value.text = "";
+    descriptionController.value.text = "";
+    selectDay.value = DateTime.now();
     getNoteByDay();
     if (kDebugMode) {
       print("getNoteByDay add Todo");

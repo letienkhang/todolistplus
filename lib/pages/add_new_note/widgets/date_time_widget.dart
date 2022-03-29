@@ -18,18 +18,28 @@ class DateTimeWidget extends StatelessWidget {
           selectionColor: theme.primaryColor,
           todayHighlightColor: theme.primaryColor,
           selectionTextStyle:
-              theme.textTheme.headline6?.copyWith(color: Colors.white),
+          TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: theme.backgroundColor),
           minDate: controller.dateTimeNow,
           maxDate: controller.dateTimeNow.add(const Duration(days: 1000)),
           headerStyle: DateRangePickerHeaderStyle(
             textAlign: TextAlign.left,
-            textStyle: theme.textTheme.headline6,
+            textStyle:  TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: theme.primaryColor),
           ),
           monthCellStyle: DateRangePickerMonthCellStyle(
-            textStyle: theme.textTheme.headline6,
-            disabledDatesTextStyle: theme.textTheme.headline6?.copyWith(
-              fontSize: 14,
-            ),
+            textStyle:  TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: theme.primaryColor),
+            disabledDatesTextStyle:  TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: theme.primaryColor),
           ),
           onSelectionChanged: (selectedDate) {
             controller.eventDateTime.value = selectedDate.value;

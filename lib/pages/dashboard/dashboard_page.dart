@@ -8,6 +8,7 @@ import 'package:todolistplus/pages/setting/setting_page.dart';
 class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GetBuilder<DashboardController>(builder: (controller) {
       return Scaffold(
         body: SafeArea(
@@ -17,7 +18,9 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: theme.primaryColor,
           onTap: controller.changeTabIndex,
+          backgroundColor: theme.backgroundColor,
           currentIndex: controller.tabIndex,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,

@@ -18,12 +18,14 @@ class ItemListWidget extends StatelessWidget {
   }
 
   Widget _itemBuilder(BuildContext context) {
+    final theme = Theme.of(context);
     return InkWell(
       onTap: () {
         onPress(todo);
       },
       child: Card(
         elevation: 8,
+        color: theme.indicatorColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10.0),
           child: Column(
@@ -31,13 +33,17 @@ class ItemListWidget extends StatelessWidget {
             children: [
               Text(
                 todo.title,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: theme.primaryColor),
               ),
               Text(
                 "${todo.description}",
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: theme.primaryColor),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 4,
               ),
