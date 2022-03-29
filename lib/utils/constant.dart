@@ -28,6 +28,7 @@ class ConstanceData {
 
 Color kBlackColor = Color(0xff292E3C);
 Color kTextColor = Colors.white;
+Color kTranperColor = const Color(0xFFF5F5F5);
 
 //Color(0xff262545);
 Color kPrimaryColor = Color(0xff5665FB);

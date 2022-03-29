@@ -22,83 +22,103 @@ class AddNewNotePage extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            child: ListView(
-              children: [
-                _createNewTaskString(context),
-                const SizedBox(
-                  height: 30,
-                ),
-                NameTaskWidget(
-                  titleTaskController: controller.titleController.value,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                DescriptionTaskWidget(
-                  taskController: controller.descriptionController.value,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const DateTimeWidget(),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  children: [
-                    CustomChipTimeWidget(
-                      title: "Start Time",
-                      textStyle: theme.textTheme.bodyText1,
-                      date: controller.eventTimeStart.value,
-                      onPressed: () async {
-                        final time = TimeOfDay.now();
-                        controller.eventTimeStart.value = (await showTimePicker(
-                          context: context,
-                          initialTime: time,
-                        ))!;
-                        controller.update();
-                      },
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    CustomChipTimeWidget(
-                      title: "End Time",
-                      textStyle: theme.textTheme.bodyText1,
-                      date: controller.eventTimeEnd.value,
-                      onPressed: () async {
-                        final time = TimeOfDay.now();
-                        controller.eventTimeEnd.value = (await showTimePicker(
-                          context: context,
-                          initialTime: time,
-                        ))!;
-                        controller.update();
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-              ],
+            child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: ListView(
+                children: [
+                  _createNewTaskString(context),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  NameTaskWidget(
+                    titleTaskController: controller.titleController.value,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  DescriptionTaskWidget(
+                    taskController: controller.descriptionController.value,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const DateTimeWidget(),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      CustomChipTimeWidget(
+                        title: "Start Time",
+                        textStyle: theme.textTheme.bodyText1,
+                        date: controller.eventTimeStart.value,
+                        onPressed: () async {
+                          final time = TimeOfDay.now();
+                          controller.eventTimeStart.value =
+                              (await showTimePicker(
+                            context: context,
+                            initialTime: time,
+                          ))!;
+                          controller.update();
+                        },
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      CustomChipTimeWidget(
+                        title: "End Time",
+                        textStyle: theme.textTheme.bodyText1,
+                        date: controller.eventTimeEnd.value,
+                        onPressed: () async {
+                          final time = TimeOfDay.now();
+                          controller.eventTimeEnd.value = (await showTimePicker(
+                            context: context,
+                            initialTime: time,
+                          ))!;
+                          controller.update();
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          child: InkWell(
-            onTap: () {
-              controller.addTodo();
-            },
-            child: Container(
-              padding: const EdgeInsets.only(
-                  top: 20, bottom: 20, left: 12, right: 12),
-              color: Colors.green,
-              child: const Text("Ableitungen"),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: FloatingActionButton(
+                  backgroundColor: Colors.black,
+                  onPressed: () {
+                    controller.addTodo();
+                    Get.snackbar(
+                        "Success", "");
+                    Navigator.of(context).pop();
+                  },
+                  child: const Icon(Icons.add),
+                ),
+              ),
             ),
-          ),
-        ),
+          ],
+        )),
+        // bottomNavigationBar: BottomAppBar(
+        //   child: InkWell(
+        //     onTap: () {
+        //       controller.addTodo();
+        //     },
+        //     child: Container(
+        //       padding: const EdgeInsets.only(
+        //           top: 20, bottom: 20, left: 12, right: 12),
+        //       color: Colors.green,
+        //       child: const Text("Ableitungen"),
+        //     ),
+        //   ),
+        // ),
       );
     });
   }

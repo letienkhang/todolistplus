@@ -7,6 +7,8 @@ import 'package:todolistplus/routes/app_routes.dart';
 import 'package:flutter_date_picker_timeline/flutter_date_picker_timeline.dart';
 import 'package:todolistplus/utils/exports.dart';
 
+import 'widget/item_list_widget.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -16,6 +18,7 @@ class HomePage extends StatelessWidget {
     final HomeController controller = Get.put(HomeController());
     int _clickCount = 0;
     return Scaffold(
+      backgroundColor: kTranperColor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -50,21 +53,14 @@ class HomePage extends StatelessWidget {
                         return ListView(
                           physics: const BouncingScrollPhysics(),
                           children: todoList
-                              .map(
-                                (e) => Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(24),
-                                    child: InkWell(
-                                      onTap: () {
-                                        if (kDebugMode) {
-                                          print("${e.description}");
-                                        }
-                                      },
-                                      child: Text(e.title),
-                                    ),
-                                  ),
-                                ),
-                              )
+                              .map((e) => ItemListWidget(
+                                    todo: e,
+                                    onPress: (data) {
+                                      // Get.defaultDialog(title: data.title);
+                                      Get.snackbar(
+                                          data.title, "${data.description}");
+                                    },
+                                  ))
                               .toList(),
                         );
                       } else if (snapshot.hasError) {
@@ -84,6 +80,7 @@ class HomePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: FloatingActionButton(
+                  backgroundColor: Colors.black,
                   onPressed: () {
                     Get.toNamed(AppRoutes.CREATENOTE);
                     // controller.addTodo();
