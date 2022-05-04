@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
             useInheritedMediaQuery: true,
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,
-            initialRoute: AppRoutes.DASHBOARD,
+            initialRoute: AppRoutes.TASK,
             getPages: AppPages.list,
             color: Colors.white,
             debugShowCheckedModeBanner: false,

@@ -3,6 +3,8 @@ import 'package:todolistplus/pages/add_new_note/add_new_note_page.dart';
 import 'package:todolistplus/pages/dashboard/dashboard_binding.dart';
 import 'package:todolistplus/pages/dashboard/dashboard_page.dart';
 import 'package:todolistplus/pages/home/home_binding.dart';
+import 'package:todolistplus/pages/task/task_binding.dart';
+import 'package:todolistplus/pages/task/task_page.dart';
 
 import 'app_routes.dart';
 
@@ -17,6 +19,11 @@ class AppPages {
       name: AppRoutes.CREATENOTE,
       page: () => AddNewNotePage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.TASK,
+      page: () => TaskPage(),
+      binding: TaskBinding(),
     ),
   ];
 }

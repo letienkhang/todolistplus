@@ -8,6 +8,7 @@ import 'widgets/date_time_widget.dart';
 import 'widgets/name_task_widget.dart';
 
 class AddNewNotePage extends StatelessWidget {
+
   const AddNewNotePage({Key? key}) : super(key: key);
 
   @override
@@ -19,7 +20,7 @@ class AddNewNotePage extends StatelessWidget {
           elevation: 0,
           backgroundColor: theme.backgroundColor,
           leading: IconButton(
-            icon:  Icon(Icons.arrow_back, color: theme.primaryColor),
+            icon: Icon(Icons.arrow_back, color: theme.primaryColor),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
@@ -30,26 +31,26 @@ class AddNewNotePage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: ListView(
                 children: [
-                  _createNewTaskString(context),
+                  // _createNewTaskString(context),
                   const SizedBox(
                     height: 30,
                   ),
                   NameTaskWidget(
                     titleTaskController: controller.titleController.value,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  DescriptionTaskWidget(
-                    taskController: controller.descriptionController.value,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const DateTimeWidget(),
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // DescriptionTaskWidget(
+                  //   taskController: controller.descriptionController.value,
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // const DateTimeWidget(),
+                  // const SizedBox(
+                  //   height: 40,
+                  // ),
                   // Row(
                   //   children: [
                   //     CustomChipTimeWidget(
@@ -97,17 +98,18 @@ class AddNewNotePage extends StatelessWidget {
                 child: FloatingActionButton(
                   backgroundColor: theme.primaryColor,
                   onPressed: () {
-                    if(controller.titleController.value.text.isNotEmpty){
-                      controller.addTodo();
-                      Get.snackbar(
-                          "Success", "");
+                    if (controller.titleController.value.text.isNotEmpty) {
+                      // controller.addTodo();
+                      Get.snackbar("Success", "");
                       Navigator.of(context).pop();
                     } else {
-                      Get.snackbar(
-                          "Title is empty", "");
+                      Get.snackbar("Title is empty", "");
                     }
                   },
-                  child:  Icon(Icons.add, color: theme.primaryColorLight,),
+                  child: Icon(
+                    Icons.add,
+                    color: theme.primaryColorLight,
+                  ),
                 ),
               ),
             ),

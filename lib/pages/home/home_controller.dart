@@ -18,33 +18,34 @@ class HomeController extends GetxController {
   var eventTimeEnd = TimeOfDay.now().obs;
   late Future<List<Todo>> myTodo;
   var selectDay = DateTime.now().obs;
+  var step = "1".obs;
 
   @override
   Future<void> onInit() async {
-    selectDay.value = dateTimeNow;
-    myTodo = getNoteByDay()!;
+    myTodo = getNoteByDay("1")!;
   }
 
   eventAddValueSelect(DateTime? date) {
     selectDay.value = date!;
-    getNoteByDay();
+    // getNoteByDay();
     if (kDebugMode) {
       print("value selectDay");
     }
     update();
   }
 
-  Future<void> addTodo() async {
+  Future<void> addTodo(String step, String tile) async {
     String date = convertToString(eventDateTime.value);
     final todo = Todo(
-        title: titleController.value.text,
-        description: descriptionController.value.text,
-        day: date);
+      title: tile,
+      description: descriptionController.value.text,
+      day: step,
+    );
     await todoStorage.insertTodo(todo);
     titleController.value.text = "";
     descriptionController.value.text = "";
-    selectDay.value = DateTime.now();
-    getNoteByDay();
+    // selectDay.value = DateTime.now();
+    getNoteByDay(step);
     if (kDebugMode) {
       print("getNoteByDay add Todo");
     }
@@ -67,14 +68,13 @@ class HomeController extends GetxController {
     return time;
   }
 
-  Future<List<Todo>>? getAllNote() async {
+  Future<List<Todo>> getAllNote() async {
     myTodo = todoStorage.readTodoList();
     return myTodo;
   }
 
-  Future<List<Todo>>? getNoteByDay() async {
-    myTodo =
-        todoStorage.readTodoListFilterDay(convertToString(selectDay.value));
+  Future<List<Todo>>? getNoteByDay(String step) async {
+    myTodo = todoStorage.readTodoListFilterDay(step);
     if (kDebugMode) {
       print("getNoteByDay");
     }

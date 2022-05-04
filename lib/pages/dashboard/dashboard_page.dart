@@ -5,6 +5,8 @@ import 'package:todolistplus/pages/dashboard/dashboard_controller.dart';
 import 'package:todolistplus/pages/home/home_page.dart';
 import 'package:todolistplus/pages/setting/setting_page.dart';
 
+import '../../presentation/home_page.dart';
+
 class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
